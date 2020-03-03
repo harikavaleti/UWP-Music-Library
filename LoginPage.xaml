@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="UWPMusicLibrary.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPMusicLibrary"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="0.15*" />
+
+            <RowDefinition Height="0.85*" />
+
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="LightBlue">
+
+            <TextBlock Name="Login" Text="Music App Login "  Margin="20,50,0,0"
+            TextAlignment="Center" FontSize="30" FontStyle="Italic" Foreground="Purple"
+            FontWeight="ExtraBold"></TextBlock>
+
+        </Border>
+
+        <StackPanel x:Name="stackone" Grid.Row="1">
+
+            <TextBox PlaceholderText="Enter Username" Name="username" Width="350" Height="40" 
+            Margin="0,50,0,0"></TextBox>
+
+            <PasswordBox Name="passwordBox" PlaceholderText="Enter Password" Width="350" MaxLength="6"  Height="40" Margin="0,10,0,0" PasswordChar="*" />
+
+            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
+            <RelativePanel HorizontalAlignment="Center"  
+            Margin="0,10,0,0">
+
+                <Button x:Name="loginbutton" Content="Login" Foreground="White" FontSize="17" Background="PaleGreen"
+                Height="40" Width="100" Click="loginbtn_Click"></Button>
+
+            </RelativePanel>
+
+        </StackPanel>
+
+    </Grid>
+    
+</Page>
