@@ -23,6 +23,7 @@ namespace UWPMusicLibrary.Model
         private static string extension { get; set; }
         private static string imagefile { get; set; }
 
+        //Get fetch allmusic from local machine
         public static List<Music> GetMusic()
         {
             var music = new List<Music>();
@@ -61,7 +62,7 @@ namespace UWPMusicLibrary.Model
 
         }
 
-
+      //To fetch all fav music from local machine
         public static List<Music> GetFavourite()
         {
             var favmusic = new List<Music>();
@@ -99,7 +100,7 @@ namespace UWPMusicLibrary.Model
             }
             return favmusic;
         }
-                //Get all advertisment images........................................................................
+                //Get all advertisment images and links........................................................................
                 private static List<Advertisment> ImagesForAdvertisment()
         {
 
@@ -152,7 +153,8 @@ namespace UWPMusicLibrary.Model
             //returning allalbums list
             return allAlbumsList;
         }
-
+        
+        //To fetch all Regional music from local machine
         public static List<Music> GetAllAlbumsinRegional()
         {
             List<Music> allRegionalSongs = new List<Music>();
@@ -164,18 +166,14 @@ namespace UWPMusicLibrary.Model
                 string allRegional = directories3[i];
                 string folderName1 = Path.GetFileName(allRegional);
                 string imageFile1 = $"Assets/Folder.png";
-
                 Music regionalAlbum = new Music(allRegional, imageFile1, folderName1);
                 allRegionalSongs.Add(regionalAlbum);
-
-
-
             }
 
             return allRegionalSongs;
         }
 
-        //creating another method for getting all music in albums
+        //creating  method for getting all musicfiles in albums
 
         public static List<Music> GetAllMusicFilesInAlbum(string userSelectedAlbumName)
         {
@@ -286,70 +284,6 @@ namespace UWPMusicLibrary.Model
            
         }
 
-       /* public async static List<Music> GetAllRecentMusic()
-        {
-            //creating list of music
-            List<Music> allFilesUserSelected = new List<Music>();
-            string musicFileName = @"\" + music.SongName + @".txt";
-
-            StorageFolder Folder = ApplicationData.Current.LocalFolder;
-            StorageFile file = await Folder.GetFileAsync(musicFileName);
-
-            string root = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
-            string path = root + @"\Assets\Music\Albums";
-
-            //Reading the sub folders from the albums folder
-            string[] dirs = Directory.GetDirectories(path);
-
-            for (int i = 0; i < dirs.Length; i++)
-            {
-                //getting all the filepath name
-                string albumNameFullPath = dirs[i];
-
-                {
-                    //get the full path of files
-                    string[] files = Directory.GetFiles(albumNameFullPath);
-
-                    if (files.Length > 0)
-                    {
-                        for (int j = 0; j < files.Length; j++)
-                        {
-                            string musicpath = files[j];
-                            string musicname = Path.GetFileName(musicpath);
-
-
-                            //get extension of that file
-                            string ext = Path.GetExtension(musicpath);
-
-                            //if the extension is .png or .jfif
-                            if ((ext == ".png" || ext == ".jfif") && (musicname == userSelectedMusic))
-                            {
-                                //give that file to that image
-                                imagefile = files[j];
-                            }
-                            //if that file is .mp3 
-                            if (ext == ".mp3")
-                            {
-                                //give that file without extension
-                                string songname = Path.GetFileNameWithoutExtension(files[j]);
-                                //creating object for the music
-                                string destinationfolder = root + @"\Assets\User\" + $"{LoginPage.UserName}" + @"\Recent Playlist\";
-
-                                Music musicFile = new Music(files[j], imagefile, songname);
-
-                                //adding all the music file to allFilesinuserselectedalbum
-                                allFilesUserSelected.Add(new Music(files[j], imagefile, songname));
-                            }
-                        }
-                    }
-                }
-
-            }
-
-            return allFilesUserSelected;
-
-        }
-        */
         public static void GetAllMusic(ObservableCollection<Music> music)
         {
             var allmusic = GetMusic();
@@ -382,15 +316,7 @@ namespace UWPMusicLibrary.Model
                 uiAlbumsList.Clear();
                 allfavs.ForEach(x => uiAlbumsList.Add(x));
             }
-            else if(category == MusicCategory.RecentPlayList)
-            {
-                
-
-
-            }
-          
-
-
+       
         }
 
 
@@ -402,8 +328,6 @@ namespace UWPMusicLibrary.Model
             allAddvertisment.ForEach(n => adds.Add(n));
 
         }
-
-
 
 
             public static void GetAlbumFiles(ObservableCollection<Music> uiFolderList, string userSelectedAlbumName, string userSElectedRegionalAlbumName)
