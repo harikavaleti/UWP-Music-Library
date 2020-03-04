@@ -89,19 +89,11 @@ namespace UWPMusicLibrary
         {
             var menuItems = (MenuItems)e.ClickedItem;
             CategoryTextBlock.Text = menuItems.Category.ToString();
-
-
-
-            //MusicGridView.ItemsSource = string.Empty;
-
-            //MusicManager.GetAllAlbumNames(music, menuItems.Category);
-
-
-
+      
             {
                 if (menuItems.Category == MusicCategory.RecentPlayList)
                 {
-                    //MusicGridView.ItemsSource =  recentPlaylist().ToList();
+                   
                     music.Clear();
                     recentPlaylist().Clear();
                     MusicGridView.ItemsSource = recentPlaylist().ToList();
@@ -135,23 +127,16 @@ namespace UWPMusicLibrary
                     MusicGridView.ItemsSource = MusicManager.GetAllAlbumsinRegional();
                 }
             }
-
-
-
-
-            BackButton.Visibility = Visibility.Visible;
+  
+           BackButton.Visibility = Visibility.Visible;
         }
 
         private void MusicGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             Music userClickedItem = (Music)e.ClickedItem;
-
-
             string root = Windows.ApplicationModel.Package.Current.InstalledLocation.Path;
             string destinationfolder = root + @"\Assets\User\" + $"{LoginPage.UserName}" + @"\RecentPlaylist";
-            Userplaylist(userClickedItem);
-
-            
+            Userplaylist(userClickedItem);     
             string extension = Path.GetExtension(userClickedItem.FileName);
             if (extension == ".mp3")
             {
@@ -177,24 +162,13 @@ namespace UWPMusicLibrary
                     MusicGridView.ItemsSource = MusicManager.GetAllMusicFilesinRegionalMusic(userClickedItem.SongName);
                     isRegional = false;
                 }
-               
-                //Calling GetAlbumFiles from music managerclass and sends user selected album name
-                //MusicManager.GetAlbumFiles(music, userClickedItem.SongName, userClickedItem.SongName);
+              
                 CategoryTextBlock.Text = userClickedItem.SongName;
 
                 NowPlaying.Text = userClickedItem.SongName;
 
-
             }
-
-            //MusicManager.GetAllRecentMusicFiles(userClickedItem.FileName);
-
-
-
-
         }
-
-
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
@@ -219,9 +193,6 @@ namespace UWPMusicLibrary
         {
 
             MyMediaElement.Position += TimeSpan.FromSeconds(10);
-
-
-
         }
 
         private void ShuffleButton_Click(object sender, RoutedEventArgs e)
@@ -238,11 +209,6 @@ namespace UWPMusicLibrary
             repButton.IsChecked = true;
             MyMediaElement.Position = TimeSpan.Zero;
             MyMediaElement.Play();
-        }
-
-        private void LikeButton_LikeClick(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
@@ -393,9 +359,6 @@ namespace UWPMusicLibrary
                      if (fileData.Length > 0)
                      {
                         string musicFilename = fileData[0];
-
-                        //musicname = file.DisplayName;
-                        //musicname = System.IO.Path.GetFileNameWithoutExtension(name);
                         string song = fileData[1];
                         string image = fileData[2];
                         recentplayList.Add(new Music(musicFilename,image,song));
@@ -447,22 +410,6 @@ namespace UWPMusicLibrary
             
         }
 
-        private void AddvertismentGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            
-        }
-
-        private void RewardAdd_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-        }
-
-      
-        private void HomeButton_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(LogOut));
