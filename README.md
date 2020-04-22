@@ -13,5 +13,4 @@ we have implemented Advertisement bar on rightmost side, we are displaying some 
 On right most top we are having welcome, on click of that we are showing menuflyout options Userprofile and Logout. On click of Userprofile we are showing on Popup window which contains user related data. On click of Logout user will logout from MusicApp and there he can find hyperlink if he wants to login again to MusicApp.
 
 
-Thank you for exploring, 
-Team-8(Kal Academy).
+Thank you for exploring
